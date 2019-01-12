@@ -1,0 +1,56 @@
+<div>
+  <h3>Observations</h3>
+  <table class="table table-striped">
+    <tr>
+      <th>Subject</th>
+      <th>Content</th>
+      <th>Relevance</th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="observation in observations" ng-include="getTemplate(observation)">
+    </tr>
+  </table>
+  <form name="addForm">
+    <label for="observationSubject">Subject</label>
+    <input type="text" id="observationSubject" ng-model="observation.subject" />
+    <label for="observationContent">Content</label>
+    <input type="text" id="observationContent" ng-model="observation.content" name="content" />
+     <label for="observationRelevance">Relevance</label>
+    <input type="text" id="observationRelevance" ng-model="observation.relevance" />
+    <button type="button" class="btn btn-primary btn-block" value="Add" ng-click="addObservation(observation)">Add observation</button>
+    {{addForm.observationContent}}
+    
+  </form>
+
+  <script type="text/ng-template" id="display">
+    <td>
+      {{observation.subject}}
+    </td>
+    <td>
+      {{observation.content}}
+    </td>
+    <td>
+      {{observation.relevance}}
+    </td>
+    <td>
+      <input type="button" value="delete" ng-click="deleteObservation(observation)" class="btn btn-danger"/>
+      <input type="button" value="edit" ng-click="editObservation(observation)" class="btn btn-warning"/>
+    </td>
+  </script>
+  <script type="text/ng-template" id="edit">
+    <td>
+      <input type="text" ng-model="observation.subject" class="form-control"/>
+    </td>
+    <td>
+      <input type="text" ng-model="observation.content" />
+    </td>
+     <td>
+      <input type="text" ng-model="observation.relevance" />
+    </td>
+    <td>
+      <input type="button" value="save" ng-click="saveObservation(observation)" />
+      <input type="button" value="cancel" ng-click="cancelEditing()" />
+    </td>
+  </script>
+  <a ui-sref="tasks">back</a>
+</div>

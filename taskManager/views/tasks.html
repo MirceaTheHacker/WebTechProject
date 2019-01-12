@@ -1,0 +1,84 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+    <div>
+    <h1>Tasks</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Code</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Autoevaluation</th>
+        </tr>
+        <tr ng-repeat="task in tasks" ng-include="getTemplate(task)">
+        </tr>
+    </table>
+   <form class="form-inline">
+  <div class="form-group">
+    <label for="taskCode">Code </label>
+    <input type="text" class="form-control" id="taskCode" ng-model="a.code" required minlentgh="4" required maxlength="4"/>
+  </div>
+ <div class="form-group">
+    <label for="taskTitle">Title </label>
+    <input type="text" class="form-control" id="taskTitle" ng-model="a.title"/>
+  </div>
+  <div class="form-group">
+    <label for="taskContent">Content</label> </label>
+    <input type="text" class="form-control" id="taskContent" ng-model="a.content"/>
+  </div>
+  <div class="form-group">
+    <label for="taskAutoevaluation">Autoevaluation</label> </label>
+    <input type="text" class="form-control" id="taskAutoevaluation" ng-model="a.autoevaluation"/>
+  </div>
+  <button type="Add" class="btn btn-default"  type="button" value="Add" ng-click="addTask(a)">Add task</button>
+</form>
+    
+    <div ng-observations="addForm.content.$error">
+        <div class="alert alert-info">
+  <strong>Atention!</strong> All fields are mandatory!
+</div>
+  
+</div>
+</div>
+     
+    </div>
+    
+    <script type="text/ng-template" id="display">
+        <td>
+            {{task.code}}
+        </td>
+        <td>
+            {{task.title}}
+        </td>
+        <td>
+            {{task.content}}
+        </td>
+        <td>
+            {{task.autoevaluation}}
+        </td>
+        <td>
+            <a ui-sref="taskDetails({id : task.id})">details</a>
+            <input type="button" value="delete" ng-click="deleteTask(task)" class="btn btn-danger"/>
+            <input type="button" value="edit" ng-click="editTask(task)" class="btn btn-warning"/>
+        </td>
+    </script>
+    <script type="text/ng-template" id="edit">
+        <td>
+            <input type="text" ng-model="task.code"/>
+        </td>
+        <td>
+            <input type="text" ng-model="task.title"/>
+        </td>
+         <td>
+            <input type="text" ng-model="task.content"/>
+        </td>
+         <td>
+            <input type="text" ng-model="task.autoevaluation"/>
+        </td>
+        <td>
+            <input type="button" value="save" ng-click="saveTask(task)"/>
+            <input type="button" value="cancel"ng-click="cancelEditing()" />
+        </td>
+    </script>
+</div>
+
+</html>
