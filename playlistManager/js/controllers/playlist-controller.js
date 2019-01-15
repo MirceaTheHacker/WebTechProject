@@ -2,6 +2,11 @@ let ctrl = angular.module('playlistControllers', ['ui.router'])
 
 const SERVER = 'https://webtechprojectoficial-gherghesan.c9users.io'
 
+const CLIENT_ID="AIzaSyCxqaxhq7isgngvJYpNJ8MHlNh1aRD9vTU"
+
+const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
+const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
+
 ctrl.controller('playlistController', ['$scope', '$http', '$state', function($scope, $http, $state) {
     let $constructor = () => {
         $http.get(SERVER + '/playlists')
@@ -40,6 +45,10 @@ ctrl.controller('playlistController', ['$scope', '$http', '$state', function($sc
         return 'display'
     }
 
+    $scope.test = () =>{
+        alert("Hello");
+    }
+
     $scope.editPlaylist = (playlist) => {
         $scope.selected = angular.copy(playlist)
     }
@@ -60,6 +69,54 @@ ctrl.controller('playlistController', ['$scope', '$http', '$state', function($sc
     //default constructor
     $constructor()
 
+  
+    
+    $scope.handleClentLoad = () => {
+      gapi.load('client:auth2', initClient);
+    }
+    
+    $scope.initClient= () => {
+      gapi.client.init({
+        discoveryDocs: DISCOVERY_DOCS,
+        clientId: CLIENT_ID,
+        scope: SCOPES
+      }); //returns a promise
+    }
+    
+    //get video
+    
+    function getVideo(){
+      document.getElementById("show-video").addEventListener(function (e){
+        alert("Hello!");
+        e.preventDefault();
+        //prepare request
+        var request = gapi.client.youtube.search.list({
+          part : "snippet",
+          type:  "video",
+          q:document.getElementById('playlistLink').value
+      
+        })
+        //execute the request
+        request.execute(function(response){
+          console.log(response);
+          var responseString=JSON.stringify(response, '',2);
+          document.getElementById('response').innerHTML=responseString;
+        });
+      });
+    }
+  
+    function onClientLoad() {
+      gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
+    }
+    // Called automatically when YouTube API interface is loaded (see line 9).
+    function onYouTubeApiLoad() {
+      gapi.client.setApiKey('AIzaSyCxqaxhq7isgngvJYpNJ8MHlNh1aRD9vTU');
+    
+    }
+    
+    
+  
+  
 }])
 
 angular.module('loginController')
@@ -128,5 +185,55 @@ $scope.deletePlaylist = (playlist) => {
     $constructor()
   }])
 
+//   const CLIENT_ID="AIzaSyCxqaxhq7isgngvJYpNJ8MHlNh1aRD9vTU"
+
+//   const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
+//   const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
+
+  
+//   function handleClentLoad(){
+//     gapi.load('client:auth2', initClient);
+//   }
+  
+//   function initClient(){
+//     gapi.client.init({
+//       discoveryDocs: DISCOVERY_DOCS,
+//       clientId: CLIENT_ID,
+//       scope: SCOPES
+//     }); //returns a promise
+//   }
+  
+//   //get video
+  
+//   function getVideo(){
+//     document.getElementById("show-video").addEventListener(function (e){
+//       alert("Hello!");
+//       e.preventDefault();
+//       //prepare request
+//       var request = gapi.client.youtube.search.list({
+//         part : "snippet",
+//         type:  "video",
+//         q:document.getElementById('playlistLink').value
+    
+//       })
+//       //execute the request
+//       request.execute(function(response){
+//         console.log(response);
+//         var responseString=JSON.stringify(response, '',2);
+//         document.getElementById('response').innerHTML=responseString;
+//       });
+//     });
+//   }
+
+//   function onClientLoad() {
+//     gapi.client.load('youtube', 'v3', onYouTubeApiLoad);
+//   }
+//   // Called automatically when YouTube API interface is loaded (see line 9).
+//   function onYouTubeApiLoad() {
+//     gapi.client.setApiKey('AIzaSyCxqaxhq7isgngvJYpNJ8MHlNh1aRD9vTU');
+  
+//   }
+  
+  
 
 
