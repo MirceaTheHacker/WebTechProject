@@ -6,7 +6,7 @@ const Sequelize = require('sequelize')
 const sequelize = new Sequelize('db777', 'root', '')
 
 let app = express()
-app.use(express.static(__dirname + '/taskManager'))
+app.use(express.static(__dirname + '/playlistManager'))
 app.use(bodyParser.json())
 app.locals.tasks = []
 

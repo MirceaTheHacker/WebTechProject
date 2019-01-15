@@ -1,35 +1,35 @@
 <!DOCTYPE <!DOCTYPE html>
 <html>
     <div>
-    <h1>Tasks</h1>
+    <h1>Playlists</h1>
     <table class="table table-striped">
         <tr>
-            <th>Code</th>
+            <th>Name</th>
             <th>Title</th>
-            <th>Content</th>
-            <th>Autoevaluation</th>
+            <th>Link</th>
+            <th>Privacy</th>
         </tr>
         <tr ng-repeat="task in tasks" ng-include="getTemplate(task)">
         </tr>
     </table>
    <form class="form-inline">
   <div class="form-group">
-    <label for="taskCode">Code </label>
-    <input type="text" class="form-control" id="taskCode" ng-model="a.code" required minlentgh="4" required maxlength="4"/>
+    <label for="playlistName">Name </label>
+    <input type="text" class="form-control" id="playlistName" ng-model="a.name" required minlentgh="4" required maxlength="30"/>
   </div>
  <div class="form-group">
-    <label for="taskTitle">Title </label>
-    <input type="text" class="form-control" id="taskTitle" ng-model="a.title"/>
+    <label for="playlistTitle">Title </label>
+    <input type="text" class="form-control" id="playlistTitle" ng-model="a.title" required minlentgh="4" required maxlength="30"/>
   </div>
   <div class="form-group">
-    <label for="taskContent">Content</label> </label>
-    <input type="text" class="form-control" id="taskContent" ng-model="a.content"/>
+    <label for="playlistLink">Link</label> </label>
+    <input type="text" class="form-control" id="playlistLink" ng-model="a.link"/>
   </div>
   <div class="form-group">
-    <label for="taskAutoevaluation">Autoevaluation</label> </label>
-    <input type="text" class="form-control" id="taskAutoevaluation" ng-model="a.autoevaluation"/>
+    <label for="playlistPrivacy">Privacy</label> </label>
+    <input type="text" class="form-control" id="playlistPrivacy" ng-model="a.privacy"/>
   </div>
-  <button type="Add" class="btn btn-default"  type="button" value="Add" ng-click="addTask(a)">Add task</button>
+  <button type="Add" class="btn btn-default"  type="button" value="Add" ng-click="addVideo(a)">Add video</button>
 </form>
     
     <div ng-observations="addForm.content.$error">

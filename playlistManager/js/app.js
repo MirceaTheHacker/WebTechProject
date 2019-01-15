@@ -1,7 +1,7 @@
 'use strict'
-let app = angular.module('taskManager', [
+let app = angular.module('playlistManager', [
     'ui.router',
-    'taskControllers',
+    'playlistControllers',
     'ngMessages'
     ])
 
@@ -21,9 +21,9 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             templateUrl : 'views/login.html',
             controller : 'loginController'
         })
-        .state('tasks', {
-            url : '/tasks',
-            templateUrl : 'views/tasks.html',
+        .state('playlists', {
+            url : '/playlists',
+            templateUrl : 'views/playlists.html',
             controller : 'taskController'
         })
         .state('taskDetails', {

@@ -1,18 +1,18 @@
-let ctrl = angular.module('taskControllers', ['ui.router'])
+let ctrl = angular.module('playlistControllers', ['ui.router'])
 
 const SERVER = 'https://webtechprojectoficial-gherghesan.c9users.io'
 
-ctrl.controller('taskController', ['$scope', '$http', '$state', function($scope, $http, $state) {
+ctrl.controller('playlistController', ['$scope', '$http', '$state', function($scope, $http, $state) {
     let $constructor = () => {
-        $http.get(SERVER + '/tasks')
+        $http.get(SERVER + '/playlists')
             .then((response) => {
-                $scope.tasks = response.data
+                $scope.playlist = response.data
             })
             .catch((error) => console.log(error))
     }
 
-    $scope.addTask = (task) => {
-        $http.post(SERVER + '/tasks', task)
+    $scope.addTask = (playlist) => {
+        $http.post(SERVER + '/playlists', playlist)
             .then((response) => {
                 $state.go($state.current, {}, {
                     reload: true
@@ -21,8 +21,8 @@ ctrl.controller('taskController', ['$scope', '$http', '$state', function($scope,
             .catch((error) => console.log(error))
     }
 
-    $scope.deleteTask = (task) => {
-        $http.delete(SERVER + '/tasks/' + task.id)
+    $scope.deleteTask = (playlist) => {
+        $http.delete(SERVER + '/playlists/' + playlist.id)
             .then((response) => {
                 $state.go($state.current, {}, {
                     reload: true
@@ -33,23 +33,23 @@ ctrl.controller('taskController', ['$scope', '$http', '$state', function($scope,
 
     $scope.selected = {}
 
-    $scope.getTemplate = (task) => {
-        if (task.id == $scope.selected.id) {
+    $scope.getTemplate = (playlist) => {
+        if (playlist.id == $scope.selected.id) {
             return 'edit'
         }
         return 'display'
     }
 
-    $scope.editTask = (task) => {
-        $scope.selected = angular.copy(task)
+    $scope.editPlaylist = (playlist) => {
+        $scope.selected = angular.copy(playlist)
     }
 
     $scope.cancelEditing = () => {
         $scope.selected = {}
     }
 
-    $scope.saveTask = (task) => {
-        $http.put(SERVER + '/tasks/' + task.id, task)
+    $scope.savePlaylist = (playlist) => {
+        $http.put(SERVER + '/playlists/' + playlist.id, playlist)
             .then(() => {
                 $state.go($state.current, {}, {
                     reload: true
@@ -57,14 +57,14 @@ ctrl.controller('taskController', ['$scope', '$http', '$state', function($scope,
             })
             .catch((error) => console.log(error))
     }
-
+    //default constructor
     $constructor()
 
 }])
 /*
 angular.module('loginControllers')
   .controller('taskController', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state) {
-    const SERVER = 'https://workspace12-andrafecioru.c9users.io'
+    const SERVER = 'https://webtechprojectoficial-gherghesan.c9users.io'
 
     let $constructor = () => {
       $http.get(SERVER + '/login/' + $stateParams.id)
