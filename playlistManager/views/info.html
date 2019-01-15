@@ -1,40 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
 
-<div>
-    <h1>
-        Top 5 on trending (in Romania)</h1>
-        <div class="container">         
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Video title</th>
-        <th>Link</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class = 'clickable-row' data-href='url:https://www.youtube.com/watch?v=SM0_bORHaas'>
-        <td>Carmen de la Salciua si Susanu</td>
-        <td  >https://www.youtube.com/watch?v=SM0_bORHaas</td>
-      </tr>
-      <tr>
-        <td>Alina Eremia feat. NOSFE</td>
-        <td>https://www.youtube.com/watch?v=nmpQq-7a_sE</td>
-      </tr>
-      <tr>
-        <td>Dani Mocanu - Nu Comenteaza Nimeni La Mine</td>
-        <td>https://www.youtube.com/watch?v=we7vrIOdoHU</td>
-      </tr>
-      <tr>
-        <td>SESIUNE SESIUNE #NoapteaTârziu</td>
-        <td>https://www.youtube.com/watch?v=mmj2ob_RHAQ</td>
-      </tr>
-      <tr>
-        <td>NU APA SONG</td>
-        <td>https://www.youtube.com/watch?v=31zMZkjjNRA</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  </head>
+<body>
+    <div>
+        <h1>
+            Top 5 on trending (in Romania)</h1>
+            <div class="container">         
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Video title</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class = 'clickable-row' data-href='url:https://www.youtube.com/watch?v=SM0_bORHaas'>
+              
+            <td>Carmen de la Salciua si Susanu</td>
+            <td  >https://www.youtube.com/watch?v=SM0_bORHaas.............................................
+              <button type="button" class="btn btn-success" id="btnTest1" >Play</button>  
+            </td>
+            
+          </tr>
+          <tr>
+            <td>Alina Eremia feat. NOSFE</td>
+            <td>https://www.youtube.com/watch?v=nmpQq-7a_sE...............................................
+              <button type="button" class="btn btn-success" id="btnTest2" >Play</button>  
+            </td>
+          </tr>
+          <tr>
+            <td>Dani Mocanu - Nu Comenteaza Nimeni La Mine</td>
+            <td>https://www.youtube.com/watch?v=we7vrIOdoHU................................................
+              <button type="button" class="btn btn-success" id="btnTest3" >Play</button>  
+            </td>
+          </tr>
+          <tr>
+            <td>SESIUNE SESIUNE #NoapteaTârziu</td>
+            <td>https://www.youtube.com/watch?v=mmj2ob_RHAQ.............................................
+              <button type="button" class="btn btn-success" id="btnTest4" >Play</button>  
+            </td>
+          </tr>
+          <tr>
+            <td>NU APA SONG</td>
+            <td>https://www.youtube.com/watch?v=31zMZkjjNRA................................................
+              <button type="button" class="btn btn-success" id="btnTest5" >Play</button>  
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    
+      <a ui-sref="playlists">back</a>
+    
+    
+    
+    </div>
 
-
-  <a ui-sref="playlists">back</a>
-</div>
+    <script>
+        var button1 = document.getElementById("btnTest1");
+       
+        button1.addEventListener("click", function(){
+            alert("Hello World!");
+          });
+</script>
+</body>
+</html>

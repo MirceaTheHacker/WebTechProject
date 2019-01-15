@@ -62,7 +62,7 @@ ctrl.controller('playlistController', ['$scope', '$http', '$state', function($sc
 
 }])
 
-angular.module('loginControllers')
+angular.module('loginController')
   .controller('playlistController', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state) {
     const SERVER = 'https://webtechprojectoficial-gherghesan.c9users.io'
 

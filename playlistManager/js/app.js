@@ -5,7 +5,6 @@ let app = angular.module('playlistManager', [
     'ngMessages'
     ])
 
-
     
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise('/login')
