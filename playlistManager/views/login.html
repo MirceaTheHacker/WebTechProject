@@ -1,7 +1,20 @@
-<img src="ytImg.png" class="img-rounded" alt="User Image" width="500" height="330">
+<img  src="ytImg.png" class="center" alt="User Image" >
+
+</img>
+
+<style>
+.center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+
   
 
-<form class="form-inline">
+<form align="center" class="form-inline">
+  
   <div class="form-group">
     <label for="user">Username:</label>
     <input type="text" class="form-control" id="user" ng-model="username">
@@ -11,5 +24,10 @@
     <input type="password" class="form-control" id="pwd" ng-model="password">
   </div>
   <button type="submit" class="btn btn-default" ng-click="loginFunction(username,password)">Login</button>
+  <p>   
+     <label>Hint:CyberKnights</label>
+  </p>
+
+   
   
 </form>

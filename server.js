@@ -8,9 +8,9 @@ const sequelize = new Sequelize('db777', 'root', '')
 let app = express()
 app.use(express.static(__dirname + '/playlistManager'))
 app.use(bodyParser.json())
-app.locals.tasks = []
+app.locals.playlists = []
 
-let Task = sequelize.define('task', {
+let Playlist = sequelize.define('playlist', {
   code: {
     type: Sequelize.STRING,
     allowNull: false
@@ -55,12 +55,12 @@ let Information = sequelize.define('information', {
   }
 })
 
-Task.hasMany(Observation, {
-  foreignKey: 'taskId'
+Playlist.hasMany(Observation, {
+  foreignKey: 'playlistId'
 })
 
-Observation.belongsTo(Task, {
-  foreignKey: 'taskId'
+Observation.belongsTo(Playlist, {
+  foreignKey: 'playlistId'
 })
 
 app.get('/create', (req, res) => {
@@ -77,13 +77,13 @@ app.get('/create', (req, res) => {
     })
 })
 
-app.get('/tasks', (req, res) => {
-  Task
+app.get('/playlist', (req, res) => {
+  Playlist
     .findAll({
       attributes: ['id','code', 'title','content', 'autoevaluation']
     })
-    .then((tasks) => {
-      res.status(200).send(tasks)
+    .then((playlists) => {
+      res.status(200).send(playlists)
     })
     .catch((error) => {
       console.warn(error)
@@ -91,16 +91,16 @@ app.get('/tasks', (req, res) => {
     })
 })
 
-app.get('/tasks/:id', (req, res) => {
-  Task
+app.get('/playlists/:id', (req, res) => {
+  Playlist
     .find({
       attributes: ['id','code', 'title','content', 'autoevaluation'],
       where: {
         id: req.params.id
       }
     })
-    .then((task) => {
-      res.status(200).send(task)
+    .then((playlist) => {
+      res.status(200).send(playlist)
     })
     .catch((error) => {
       console.warn(error)
@@ -108,8 +108,8 @@ app.get('/tasks/:id', (req, res) => {
     })
 })
 
-app.post('/tasks', (req, res) => {
-  Task
+app.post('/playlists', (req, res) => {
+  Playlist
     .create(req.body)
     .then(() => {
       res.status(201).send('created')
@@ -120,15 +120,15 @@ app.post('/tasks', (req, res) => {
     })
 })
 
-app.put('/tasks/:id', (req, res) => {
-  Task
+app.put('/playlists/:id', (req, res) => {
+  Playlist
     .find({
       where: {
         id: req.params.id
       }
     })
-    .then((task) => {
-      return task.updateAttributes(req.body)
+    .then((playlist) => {
+      return playlist.updateAttributes(req.body)
     })
     .then(() => {
       res.status(201).send('modified')
@@ -139,15 +139,15 @@ app.put('/tasks/:id', (req, res) => {
     })
 })
 
-app.delete('/tasks/:id', (req, res) => {
-  Task
+app.delete('/playlists/:id', (req, res) => {
+  Playlist
     .find({
       where: {
         id: req.params.id
       }
     })
-    .then((task) => {
-      return task.destroy()
+    .then((playlist) => {
+      return playlist.destroy()
     })
     .then(() => {
       res.status(201).send('removed')
@@ -158,16 +158,16 @@ app.delete('/tasks/:id', (req, res) => {
     })
 })
 
-app.get('/tasks/:id/observations', (req, res) => {
-  Task
+app.get('/playlists/:id/observations', (req, res) => {
+  Playlist
     .find({
       where: {
         id: req.params.id
       },
       include: [Observation]
     })
-    .then((task) => {
-      return task.getObservations()
+    .then((playlist) => {
+      return playlist.getObservations()
     })
     .then((observations) => {
       res.status(200).send(observations)
@@ -178,7 +178,7 @@ app.get('/tasks/:id/observations', (req, res) => {
     })
 })
 
-app.get('/tasks/:id/observations/:mId', (req, res) => {
+app.get('/playlists/:id/observations/:mId', (req, res) => {
   Observation
     .find({
       attributes: ['id', 'subject', 'content','relevance'],
@@ -195,17 +195,17 @@ app.get('/tasks/:id/observations/:mId', (req, res) => {
     })
 })
 
-app.post('/tasks/:id/observations', (req, res) => {
+app.post('/playlists/:id/observations', (req, res) => {
   console.warn(req.body)
-  Task
+  Playlist
     .find({
       where: {
         id: req.params.id
       }
     })
-    .then((task) => {
+    .then((playlist) => {
       let observation = req.body
-      observation.taskId = task.id
+      observation.playlistId = playlist.id
       return Observation.create(observation)
     })
     .then(() => {
@@ -217,7 +217,7 @@ app.post('/tasks/:id/observations', (req, res) => {
     })
 })
 
-app.put('/tasks/:id/observations/:mId', (req, res) => {
+app.put('/playlists/:id/observations/:mId', (req, res) => {
   Observation
     .find({
       where: {
@@ -240,7 +240,7 @@ app.put('/tasks/:id/observations/:mId', (req, res) => {
 
 })
 
-app.delete('/tasks/:id/observations/:mId', (req, res) => {
+app.delete('/playlists/:id/observations/:mId', (req, res) => {
   Observation
     .find({
       where: {
@@ -270,8 +270,8 @@ app.get('/informations', (req, res) => {
     .findAll({
       attributes: ['id','subject', 'resource']
     })
-    .then((tasks) => {
-      res.status(200).send(tasks)
+    .then((playlists) => {
+      res.status(200).send(playlists)
     })
     .catch((error) => {
       console.warn(error)
@@ -287,8 +287,8 @@ app.get('/informations/:id', (req, res) => {
         id: req.params.id
       }
     })
-    .then((task) => {
-      res.status(200).send(task)
+    .then((playlist) => {
+      res.status(200).send(playlist)
     })
     .catch((error) => {
       console.warn(error)

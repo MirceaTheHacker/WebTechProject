@@ -1,5 +1,6 @@
 <!DOCTYPE <!DOCTYPE html>
 <html>
+    <p>TEST</p>
     <div>
     <h1>Playlists</h1>
     <table class="table table-striped">
@@ -9,7 +10,7 @@
             <th>Link</th>
             <th>Privacy</th>
         </tr>
-        <tr ng-repeat="task in tasks" ng-include="getTemplate(task)">
+        <tr ng-repeat="playlist in playlists" ng-include="getTemplate(playlist)">
         </tr>
     </table>
    <form class="form-inline">
@@ -23,11 +24,11 @@
   </div>
   <div class="form-group">
     <label for="playlistLink">Link</label> </label>
-    <input type="text" class="form-control" id="playlistLink" ng-model="a.link"/>
+    <input type="text" class="form-control" id="playlistLink" ng-model="a.link" required minlentgh="4" required maxlength="100"/>
   </div>
   <div class="form-group">
     <label for="playlistPrivacy">Privacy</label> </label>
-    <input type="text" class="form-control" id="playlistPrivacy" ng-model="a.privacy"/>
+    <input type="text" class="form-control" id="playlistPrivacy" ng-model="a.privacy"required minlentgh="4" required maxlength="30"/>
   </div>
   <button type="Add" class="btn btn-default"  type="button" value="Add" ng-click="addVideo(a)">Add video</button>
 </form>
@@ -44,38 +45,38 @@
     
     <script type="text/ng-template" id="display">
         <td>
-            {{task.code}}
+            {{playlist.code}}
         </td>
         <td>
-            {{task.title}}
+            {{playlist.title}}
         </td>
         <td>
-            {{task.content}}
+            {{playlist.content}}
         </td>
         <td>
-            {{task.autoevaluation}}
+            {{playlist.autoevaluation}}
         </td>
         <td>
-            <a ui-sref="taskDetails({id : task.id})">details</a>
-            <input type="button" value="delete" ng-click="deleteTask(task)" class="btn btn-danger"/>
-            <input type="button" value="edit" ng-click="editTask(task)" class="btn btn-warning"/>
+            <a ui-sref="playlistDetails({id : playlist.id})">details</a>
+            <input type="button" value="delete" ng-click="deletePlaylist(playlist)" class="btn btn-danger"/>
+            <input type="button" value="edit" ng-click="editPlaylist(playlist)" class="btn btn-warning"/>
         </td>
     </script>
     <script type="text/ng-template" id="edit">
         <td>
-            <input type="text" ng-model="task.code"/>
+            <input type="text" ng-model="playlist.code"/>
         </td>
         <td>
-            <input type="text" ng-model="task.title"/>
+            <input type="text" ng-model="playlist.title"/>
         </td>
          <td>
-            <input type="text" ng-model="task.content"/>
+            <input type="text" ng-model="playlist.content"/>
         </td>
          <td>
-            <input type="text" ng-model="task.autoevaluation"/>
+            <input type="text" ng-model="playlist.autoevaluation"/>
         </td>
         <td>
-            <input type="button" value="save" ng-click="saveTask(task)"/>
+            <input type="button" value="save" ng-click="savePlaylist(playlist)"/>
             <input type="button" value="cancel"ng-click="cancelEditing()" />
         </td>
     </script>

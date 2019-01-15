@@ -5,7 +5,6 @@
       <th>Subject</th>
       <th>Content</th>
       <th>Relevance</th>
-      <th></th>
     </tr>
     <tr ng-repeat="observation in observations" ng-include="getTemplate(observation)">
     </tr>
@@ -52,5 +51,5 @@
       <input type="button" value="cancel" ng-click="cancelEditing()" />
     </td>
   </script>
-  <a ui-sref="tasks">back</a>
+  <a ui-sref="playlists">back</a>
 </div>

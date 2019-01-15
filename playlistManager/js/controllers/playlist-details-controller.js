@@ -1,12 +1,12 @@
-angular.module('taskControllers')
-  .controller('taskDetailsController', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state) {
+angular.module('playlistControllers')
+  .controller('playlistDetailsController', ['$scope', '$http', '$stateParams', '$state', function($scope, $http, $stateParams, $state) {
     const SERVER = 'https://webtechprojectoficial-gherghesan.c9users.io' 
 
     let $constructor = () => {
-      $http.get(SERVER + '/tasks/' + $stateParams.id)
+      $http.get(SERVER + '/playlitsts/' + $stateParams.id)
         .then((response) => {
-          $scope.task = response.data
-          return $http.get(SERVER + '/tasks/' + $stateParams.id + '/observations')
+          $scope.playlist = response.data
+          return $http.get(SERVER + '/playlitsts/' + $stateParams.id + '/observations')
         })
         .then((response) => {
           $scope.observations = response.data
@@ -16,7 +16,7 @@ angular.module('taskControllers')
 
     $scope.addObservation = (observation) => {
       console.log(observation)
-      $http.post(SERVER + '/tasks/' + $stateParams.id + '/observations', observation)
+      $http.post(SERVER + '/playlitsts/' + $stateParams.id + '/observations', observation)
         .then((response) => {
           $state.go($state.current, {}, {
             reload: true
@@ -26,7 +26,7 @@ angular.module('taskControllers')
     }
 
     $scope.deleteObservation = (observation) => {
-      $http.delete(SERVER + '/tasks/' + $stateParams.id + '/observations/' + observation.id)
+      $http.delete(SERVER + '/playlitsts/' + $stateParams.id + '/observations/' + observation.id)
         .then((response) => {
           $state.go($state.current, {}, {
             reload: true
@@ -53,7 +53,7 @@ angular.module('taskControllers')
     }
 
     $scope.saveObservation = (observation) => {
-      $http.put(SERVER + '/tasks/' + $stateParams.id + '/observations/' + observation.id, observation)
+      $http.put(SERVER + '/playlitsts/' + $stateParams.id + '/observations/' + observation.id, observation)
         .then(() => {
           $state.go($state.current, {}, {
             reload: true

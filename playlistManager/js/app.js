@@ -5,6 +5,8 @@ let app = angular.module('playlistManager', [
     'ngMessages'
     ])
 
+
+    
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise('/login')
     $stateProvider
@@ -24,11 +26,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         .state('playlists', {
             url : '/playlists',
             templateUrl : 'views/playlists.html',
-            controller : 'taskController'
+            controller : 'playlistController'
         })
-        .state('taskDetails', {
-            url : '/tasks/:id',
-            templateUrl : 'views/task-details.html',
-            controller : 'taskDetailsController'
+        .state('playlistDetails', {
+            url : '/playlists/:id',
+            templateUrl : 'views/playlist-details.html',
+            controller : 'playlistDetailsController'
         })
 }])
